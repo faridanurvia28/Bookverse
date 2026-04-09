@@ -1,0 +1,423 @@
+/* =========================
+   RESET & VARIABLES
+========================= */
+:root {
+    /* Warna Pink & Biru */
+    --pink-1: #FCA5F1;
+    --pink-2: #FFB6F5;
+    --pink-3: #FFC9F9;
+    --pink-soft: #FFF0FD;
+    --blue-1: #B5FFFF;
+    --blue-2: #C5FFFF;
+    --blue-3: #D6FFFF;
+    --blue-soft: #F0FFFF;
+    
+    /* Gradient */
+    --gradient-primary: linear-gradient(145deg, #FCA5F1, #B5FFFF);
+    --gradient-secondary: linear-gradient(225deg, #B5FFFF, #FCA5F1);
+    --gradient-accent: linear-gradient(135deg, #FFC9F9, #D6FFFF);
+    
+    /* Warna Netral */
+    --dark: #1E293B;
+    --dark-soft: #334155;
+    --gray: #64748B;
+    --gray-soft: #E2E8F0;
+    --gray-light: #F8FAFC;
+    --white: #FFFFFF;
+    
+    /* Shadows */
+    --shadow-sm: 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+    --shadow-pink: 0 10px 25px -5px rgba(252, 165, 241, 0.4);
+    --shadow-blue: 0 10px 25px -5px rgba(181, 255, 255, 0.4);
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+    
+    /* Transitions */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    font-family: 'Plus Jakarta Sans', 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* =========================
+   MODAL CONTAINER
+========================= */
+.profile-container {
+    background: var(--white);
+    width: 520px;
+    padding: 35px 40px;
+    border-radius: var(--radius-xl);
+    position: relative;
+    box-shadow: var(--shadow-lg), var(--shadow-pink);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: slideUp 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    overflow: hidden;
+}
+
+.profile-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-primary);
+}
+
+@keyframes slideUp {
+    from {
+        transform: translate(-50%, -30%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+/* =========================
+   TITLE
+========================= */
+.title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-full);
+}
+
+/* =========================
+   FORM GRID
+========================= */
+.form-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* =========================
+   FORM GROUP
+========================= */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Icons for each field */
+.form-group:nth-child(1) label::before {
+    content: '👤';
+    font-size: 16px;
+}
+
+.form-group:nth-child(2) label::before {
+    content: '🔑';
+    font-size: 14px;
+}
+
+.form-group:nth-child(3) label::before {
+    content: '📞';
+    font-size: 14px;
+}
+
+/* Input Fields */
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    border: 2px solid var(--gray-soft);
+    background: var(--white);
+    font-size: 14px;
+    outline: none;
+    transition: var(--transition);
+    color: var(--dark);
+}
+
+.form-group input:focus {
+    border-color: var(--pink-1);
+    box-shadow: 0 0 0 4px rgba(252, 165, 241, 0.1);
+}
+
+.form-group input:hover {
+    border-color: var(--blue-1);
+}
+
+.form-group input::placeholder {
+    color: var(--gray);
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+/* =========================
+   ERROR MESSAGE
+========================= */
+.error {
+    color: #EF4444;
+    font-size: 12px;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #FEE2E2;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    width: fit-content;
+    font-weight: 500;
+    animation: shake 0.3s ease;
+}
+
+.error::before {
+    content: '⚠️';
+    font-size: 12px;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Input error state */
+.form-group input.error-input {
+    border-color: #EF4444;
+    background: #FEF2F2;
+}
+
+/* =========================
+   BUTTON WRAPPER
+========================= */
+.btn-wrapper {
+    margin-top: 35px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Button Save */
+.btn-save {
+    background: var(--gradient-primary);
+    color: var(--dark);
+    border: none;
+    padding: 12px 35px;
+    border-radius: var(--radius-full);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-bounce);
+    box-shadow: var(--shadow-sm);
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+    min-width: 140px;
+    justify-content: center;
+}
+
+.btn-save::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+    z-index: 1;
+}
+
+.btn-save:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: var(--shadow-pink);
+}
+
+.btn-save:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-save span {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-save i {
+    position: relative;
+    z-index: 2;
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+.btn-save:hover i {
+    transform: translateX(5px) rotate(5deg);
+}
+
+/* =========================
+   SUCCESS STATE (opsional)
+========================= */
+.form-group.success input {
+    border-color: #10B981;
+    background: #F0FDF4;
+}
+
+.success-message {
+    color: #10B981;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #D1FAE5;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    width: fit-content;
+    margin-top: 4px;
+}
+
+.success-message::before {
+    content: '✅';
+    font-size: 12px;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+.btn-save {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.btn-save:hover {
+    animation: none;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 600px) {
+    .profile-container {
+        width: 90%;
+        padding: 25px 20px;
+        margin: 15px;
+    }
+    
+    .title {
+        font-size: 20px;
+    }
+    
+    .title::after {
+        width: 40px;
+    }
+    
+    .form-group input {
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+    
+    .btn-wrapper {
+        justify-content: center;
+    }
+    
+    .btn-save {
+        width: 100%;
+        padding: 12px 25px;
+    }
+}
+
+@media (max-width: 380px) {
+    .profile-container {
+        padding: 20px 15px;
+    }
+    
+    .title {
+        font-size: 18px;
+    }
+    
+    .error {
+        font-size: 11px;
+        padding: 4px 10px;
+    }
+}
+
+/* =========================
+   CUSTOM SCROLLBAR
+========================= */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--gray-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-primary);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gradient-secondary);
+}

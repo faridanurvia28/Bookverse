@@ -1,0 +1,246 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    background: #ffffff;
+}
+
+.wrap {
+    width: 920px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+}
+
+/* ================= TOPBAR ================= */
+.topbar {
+    background: linear-gradient(90deg, #FCA5F1, #B5FFFF);
+    color: #1E293B;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.top-icon {
+    background: rgba(255,255,255,.25);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.top-text h4 { font-size: 15px; }
+.top-text span { font-size: 12px; opacity: .9; }
+
+.top-right { font-size: 26px; }
+
+/* ================= FILTER ================= */
+.filter {
+    margin: 18px 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.filter-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 30px;
+}
+
+/* DATE BOX */
+.date-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid #FCA5F1;
+    border-radius: 7px;  
+    overflow: hidden;
+    height: 34px;         
+}
+
+.date-box i {
+    background: linear-gradient(145deg, #FCA5F1, #B5FFFF);
+    color: #1E293B;
+    padding: 0 10px;      
+    font-size: 13px;      
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.date-box input {
+    border: none;
+    outline: none;
+    padding: 0 10px;      
+    font-size: 13px;     
+    width: 95px;          
+    height: 100%;
+}
+
+/* PANAH */
+.filter-right .fa-arrows-left-right {
+    font-size: 15px;
+    color: #FCA5F1;
+    margin: 0 2px;
+}
+
+/* BUTTON FILTER */
+.btn-filter {
+    height: 34px;
+    padding: 0 14px;
+    font-size: 12px;
+    background: linear-gradient(145deg, #FCA5F1, #B5FFFF);
+    color: #1E293B;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* ================= PAPER ================= */
+.paper {
+    background: white;
+    border: 1px solid #E2E8F0;
+    padding: 20px;
+}
+
+/* ================= KOP ================= */
+.kop {
+    width: 100%;
+}
+
+.logo {
+    width: 80px;
+    float: left;
+}
+
+.kop-text {
+    text-align: center;
+}
+
+.logo {
+    width: 70px;
+}
+
+.kop-text {
+    text-align: center;
+    flex: 1;
+}
+
+.kop-text h2 { font-size: 18px; }
+.kop-text h3 { font-size: 15px; }
+.kop-text p  { font-size: 12px; }
+
+hr { 
+    margin: 15px 0; 
+    border: none;
+    border-top: 2px solid #FCA5F1;
+}
+
+/* ================= INFO ================= */
+.info {
+    font-size: 13px;
+    margin-bottom: 10px;
+    color: #334155;
+}
+
+/* ================= TABLE ================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+thead {
+    background: #FCA5F1;
+    color: #1E293B;
+}
+
+th, td {
+    border: 1px solid #E2E8F0;
+    padding: 6px;
+    text-align: center;
+}
+
+td:nth-child(2),
+td:nth-child(3) {
+    text-align: left;
+}
+
+/* ================= FOOTER ================= */
+.paper-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    margin-top: 10px;
+    color: #64748B;
+}
+
+/* ================= ACTION BUTTON ================= */
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.actions-left {
+    display: flex;
+    gap: 12px;
+}
+
+.actions-right {
+    display: flex;
+}
+
+.actions .btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    font-size: 13px;
+    border-radius: 20px;
+    border: none;
+    background: linear-gradient(145deg, #FCA5F1, #B5FFFF);
+    color: #1E293B;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(252, 165, 241, 0.25);
+}
+
+.actions .btn:hover {
+    background: linear-gradient(145deg, #FFB6F5, #C5FFFF);
+    transform: translateY(-2px);
+}
+
+/* ================= PRINT ================= */
+@media print {
+    .topbar,
+    .filter,
+    .actions {
+        display: none;
+    }
+
+    .wrap {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    thead {
+        background: #FCA5F1;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    hr {
+        border-top: 2px solid #FCA5F1;
+    }
+}

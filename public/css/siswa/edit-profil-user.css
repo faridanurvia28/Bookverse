@@ -1,0 +1,414 @@
+/* =========================
+   RESET & VARIABLES
+========================= */
+:root {
+    /* Warna Pink & Biru */
+    --pink-1: #FCA5F1;
+    --pink-2: #FFB6F5;
+    --pink-3: #FFC9F9;
+    --pink-soft: #FFF0FD;
+    --blue-1: #B5FFFF;
+    --blue-2: #C5FFFF;
+    --blue-3: #D6FFFF;
+    --blue-soft: #F0FFFF;
+    
+    /* Gradient */
+    --gradient-primary: linear-gradient(145deg, #FCA5F1, #B5FFFF);
+    --gradient-secondary: linear-gradient(225deg, #B5FFFF, #FCA5F1);
+    --gradient-accent: linear-gradient(135deg, #FFC9F9, #D6FFFF);
+    
+    /* Warna Netral */
+    --dark: #1E293B;
+    --dark-soft: #334155;
+    --gray: #64748B;
+    --gray-soft: #E2E8F0;
+    --gray-light: #F8FAFC;
+    --white: #FFFFFF;
+    
+    /* Shadows */
+    --shadow-sm: 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+    --shadow-pink: 0 10px 25px -5px rgba(252, 165, 241, 0.4);
+    --shadow-blue: 0 10px 25px -5px rgba(181, 255, 255, 0.4);
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+    
+    /* Transitions */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(135deg, #F8FAFC 0%, #F0F9FF 100%);
+    font-family: 'Plus Jakarta Sans', 'Inter', Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.profile-container {
+    background: var(--white);
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 40px 45px;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    position: relative;
+    overflow: hidden;
+    animation: slideUp 0.5s ease;
+}
+
+.profile-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-primary);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-full);
+}
+
+.title i {
+    color: var(--pink-1);
+    margin-right: 10px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px 40px;
+}
+
+/* ================= FORM GROUP ================= */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0;
+    color: var(--dark);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-group label i {
+    color: var(--pink-1);
+    font-size: 16px;
+    width: 20px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--gray-soft);
+    background: var(--white);
+    font-size: 14px;
+    outline: none;
+    transition: var(--transition);
+    color: var(--dark);
+}
+
+.form-group input:focus {
+    border-color: var(--pink-1);
+    box-shadow: 0 0 0 4px rgba(252, 165, 241, 0.1);
+}
+
+.form-group input:hover {
+    border-color: var(--blue-1);
+}
+
+.form-group input::placeholder {
+    color: var(--gray);
+    font-weight: 400;
+    font-size: 13px;
+}
+
+/* ================= ERROR ================= */
+.error {
+    color: #EF4444;
+    font-size: 12px;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: #FEE2E2;
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    width: fit-content;
+    font-weight: 500;
+    animation: shake 0.3s ease;
+}
+
+.error::before {
+    content: '⚠️';
+    font-size: 11px;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Input error state */
+.form-group input.error-input {
+    border-color: #EF4444;
+    background: #FEF2F2;
+}
+
+/* ================= BUTTON WRAPPER ================= */
+.btn-wrapper {
+    margin-top: 40px;
+    text-align: right;
+}
+
+/* BUTTON SAVE */
+.btn-save {
+    background: var(--gradient-primary);
+    color: var(--dark);
+    border: none;
+    padding: 14px 40px;
+    border-radius: var(--radius-full);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-bounce);
+    box-shadow: var(--shadow-sm);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-save::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+    z-index: 1;
+}
+
+.btn-save:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: var(--shadow-pink);
+}
+
+.btn-save:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-save span {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-save i {
+    position: relative;
+    z-index: 2;
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+.btn-save:hover i {
+    transform: translateX(5px) rotate(5deg);
+}
+
+/* ================= ICONS UNTUK SETIAP FIELD ================= */
+/* Nama */
+.form-group:nth-child(1) label::before {
+    content: '👤';
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+/* Username */
+.form-group:nth-child(2) label::before {
+    content: '🔑';
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+/* Jenis Kelamin */
+.form-group:nth-child(3) label::before {
+    content: '⚥';
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+/* NISN */
+.form-group:nth-child(4) label::before {
+    content: '🆔';
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+/* Kelas */
+.form-group:nth-child(5) label::before {
+    content: '📚';
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+/* No. Telepon */
+.form-group:nth-child(6) label::before {
+    content: '📞';
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+/* ================= SUCCESS STATE ================= */
+.form-group.success input {
+    border-color: #10B981;
+    background: #F0FDF4;
+}
+
+.success-message {
+    color: #10B981;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #D1FAE5;
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    width: fit-content;
+    margin-top: 4px;
+}
+
+.success-message::before {
+    content: '✅';
+    font-size: 11px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 30px 25px;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .title {
+        font-size: 24px;
+    }
+    
+    .btn-wrapper {
+        text-align: center;
+    }
+    
+    .btn-save {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-container {
+        padding: 25px 20px;
+        width: 95%;
+    }
+    
+    .title {
+        font-size: 20px;
+    }
+    
+    .title::after {
+        width: 40px;
+    }
+    
+    .form-group input {
+        padding: 12px 15px;
+        font-size: 13px;
+    }
+    
+    .error {
+        font-size: 11px;
+        padding: 5px 10px;
+    }
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--gray-light);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--pink-1), var(--blue-1));
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--pink-2), var(--blue-2));
+}

@@ -1,0 +1,417 @@
+/* =========================
+   RESET & VARIABLES
+========================= */
+:root {
+    /* Warna Pink & Biru */
+    --pink-1: #FCA5F1;
+    --pink-2: #FFB6F5;
+    --pink-3: #FFC9F9;
+    --pink-soft: #FFF0FD;
+    --blue-1: #B5FFFF;
+    --blue-2: #C5FFFF;
+    --blue-3: #D6FFFF;
+    --blue-soft: #F0FFFF;
+    
+    /* Gradient */
+    --gradient-primary: linear-gradient(145deg, #FCA5F1, #B5FFFF);
+    --gradient-secondary: linear-gradient(225deg, #B5FFFF, #FCA5F1);
+    --gradient-accent: linear-gradient(135deg, #FFC9F9, #D6FFFF);
+    
+    /* Warna Netral */
+    --dark: #1E293B;
+    --dark-soft: #334155;
+    --gray: #64748B;
+    --gray-soft: #E2E8F0;
+    --gray-light: #F8FAFC;
+    --white: #FFFFFF;
+    
+    /* Shadows */
+    --shadow-sm: 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+    --shadow-pink: 0 10px 25px -5px rgba(252, 165, 241, 0.4);
+    --shadow-blue: 0 10px 25px -5px rgba(181, 255, 255, 0.4);
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+    
+    /* Transitions */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', 'Inter', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    background: transparent;
+}
+
+/* =========================
+   OVERLAY
+========================= */
+.overlay {
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* =========================
+   MODAL
+========================= */
+.modal {
+    background: var(--white);
+    width: 400px;
+    padding: 30px;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg), var(--shadow-pink);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: slideUp 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+    overflow: hidden;
+}
+
+.modal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-primary);
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* =========================
+   MODAL HEADER
+========================= */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--dark);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.5px;
+}
+
+/* Close Icon */
+.close-icon {
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--gray);
+    transition: var(--transition-bounce);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    background: var(--gray-light);
+}
+
+.close-icon:hover {
+    color: var(--dark);
+    background: var(--pink-soft);
+    transform: rotate(90deg) scale(1.1);
+}
+
+/* =========================
+   DIVIDER
+========================= */
+.modal hr {
+    border: none;
+    border-top: 2px solid var(--gray-soft);
+    margin: 15px 0 25px;
+    border-radius: var(--radius-full);
+    background: var(--gradient-accent);
+    height: 2px;
+}
+
+/* =========================
+   UPLOAD BOX
+========================= */
+.upload-box {
+    width: 240px;
+    height: 240px;
+    margin: 0 auto;
+    border: 3px dashed var(--pink-1);
+    border-radius: var(--radius-xl);
+    background: linear-gradient(135deg, var(--pink-soft), var(--blue-soft));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition-bounce);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.upload-box::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+    z-index: 1;
+}
+
+.upload-box:hover {
+    border-color: var(--blue-1);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: var(--shadow-pink);
+}
+
+.upload-box:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.upload-content {
+    text-align: center;
+    color: var(--dark);
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+}
+
+.upload-content .icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    color: var(--pink-1);
+    transition: var(--transition-bounce);
+}
+
+.upload-box:hover .icon {
+    transform: scale(1.2) rotate(10deg);
+    color: var(--blue-1);
+}
+
+.upload-content .text {
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: var(--dark);
+}
+
+.upload-content .info {
+    font-size: 12px;
+    color: var(--gray);
+    background: rgba(255, 255, 255, 0.5);
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    display: inline-block;
+}
+
+/* File Input */
+.file-input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+/* Preview Image (akan tampil setelah upload) */
+.upload-box.has-preview .upload-content {
+    opacity: 0;
+}
+
+.upload-box.has-preview img.preview {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+    z-index: 2;
+}
+
+/* =========================
+   BUTTON WRAPPER
+========================= */
+.btn-wrapper {
+    margin-top: 35px;
+    text-align: center;
+}
+
+/* Button Close */
+.btn-close {
+    background: var(--gradient-primary);
+    color: var(--dark);
+    border: none;
+    padding: 14px 35px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: var(--transition-bounce);
+    box-shadow: var(--shadow-sm);
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 150px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-close::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+    z-index: 1;
+}
+
+.btn-close:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: var(--shadow-pink);
+}
+
+.btn-close:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-close span {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-close i {
+    position: relative;
+    z-index: 2;
+    transition: var(--transition);
+}
+
+.btn-close:hover i {
+    transform: translateX(3px);
+}
+
+/* =========================
+   ANIMATIONS TAMBAHAN
+========================= */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.upload-box {
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.upload-box:hover {
+    animation: none;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 480px) {
+    .modal {
+        width: 90%;
+        padding: 25px 20px;
+        margin: 15px;
+    }
+    
+    .upload-box {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .upload-content .icon {
+        font-size: 40px;
+    }
+    
+    .upload-content .text {
+        font-size: 14px;
+    }
+    
+    .btn-close {
+        width: 100%;
+        padding: 12px 25px;
+    }
+    
+    .modal-header h2 {
+        font-size: 20px;
+    }
+}
+
+/* =========================
+   CUSTOM SCROLLBAR
+========================= */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--gray-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-primary);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gradient-secondary);
+}
