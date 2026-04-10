@@ -24,7 +24,8 @@
 </div>
 
 <!-- TAB -->
-<div class="top-action">
+<div class="top-action" style="display: flex; justify-content: space-between; align-items: center;">
+    
     <div class="tabs">
         <a href="?mode=peminjaman"
            class="tab {{ ($mode ?? 'peminjaman') == 'peminjaman' ? 'active' : '' }}">
@@ -35,6 +36,12 @@
             Pengembalian
         </a>
     </div>
+
+    @auth
+    <a href="{{ route('cetak.filter-transaksi') }}" class="btn-print">
+        <i class="fa-solid fa-print"></i>
+        Cetak Laporan
+    </a>
 </div>
 
 <!-- FILTER -->
@@ -189,11 +196,7 @@
         </div>
     </form>
 
-    @auth
-    <a href="{{ route('cetak.filter-transaksi') }}" class="btn-print">
-        <i class="fa-solid fa-print"></i>
-        Cetak Laporan
-    </a>
+   
     @endauth
 </div>
 
